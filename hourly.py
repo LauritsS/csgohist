@@ -1,8 +1,7 @@
 from pydoc import cli
 import csv, time, os
 from datetime import datetime
-import requests, json, pymongo
-from pymongo import MongoClient, InsertOne
+import requests, json
 
 
 messer = requests.get('https://buff.163.com/api/market/goods/buying?game=csgo&page_num=1&category_group=knife').json()
