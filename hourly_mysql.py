@@ -1,8 +1,10 @@
 from pydoc import cli
-import csv, time, os
+import csv, time, os, re
 from datetime import datetime
 import requests, json, schedule, time
 import mysql.connector
+import time    
+
 
 mydb = mysql.connector.connect(
   host="localhost",
@@ -31,7 +33,6 @@ m4 = {
     "wish" : "2150"
 }
 
-
 de = {
     "id" : "781677",
     "wish" : "645"
@@ -58,21 +59,52 @@ def preisabfrage(val):
         name = res['data']['goods_infos'][val["id"]]['market_hash_name']
         lowest = res['data']['items'][0]['price']
         lowesteur = round(float(lowest) * yuan)
-        return name, lowest, lowesteur
+        return name, round(float(lowest)), lowesteur
+
+def condition(cond):
+    if "Minimal Wear" in cond:
+          cond = "MW"
+    elif "Factory New" in cond:
+        cond = "FN"
+    elif "Battle-Scarred" in cond:
+         cond = "BS"
+    elif "Well-Worn" in cond:
+         cond = "WW"
+    elif "Fiel-Tested" in cond:
+         cond = "FT"
+
+    return cond
  
 
 with open('C:/Users/Maurits/Desktop/GIT Project/csgohist/skinverlauf.csv', 'a', newline='') as f:       
-    writer = csv.writer(f)
-    writer.writerow(header)
+    #writer = csv.writer(f)
+    #writer.writerow(header)
     n = 0
+    now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
     for val in vals:
         line = preisabfrage(val)
-        sql = "INSERT INTO weapons (id, name) VALUES ({},{})".format(n, str(line[0]))
+
+        skin = re.findall("\| (.*) \(", line[0])[0]
+        cond = re.findall("\((.*)\)",line[0])[0]
+        waffe = re.findall("(.*) \|", line[0])[0]
+
+        cond = condition(cond)
+
+        stat = False
+        if "StatTrak" in waffe:
+            waffe = waffe.split(" ", 1)[1]
+            stat = True
+    
+        sql = "INSERT INTO {} (id, Date, Waffe, Skin, Cond, Yuan, Eur) VALUES ({},'{}','{}','{}','{}',{},{})".format(val,n, now, waffe, skin, cond, line[1], line[2])
+        #sql = "INSERT INTO weapons (id, name) VALUES ({},'{}')".format(n, waffe)
         mycursor.execute(sql)
-        writer.writerow([datetime.now(), str(line[0]), str(line[1]), str(line[2])])
+        #writer.writerow([datetime.now(), str(line[0]), str(line[1]), str(line[2])])
         n = n+1
     mydb.commit()
     print(mycursor.rowcount, "Reihe(n) geschrieben")
     mycursor.close()
     #grafana
+
+
+

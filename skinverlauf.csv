@@ -1,58 +1,80 @@
 timestamp,weapon,preis,preis_eur
-2023-03-10 15:30:19.259223,StatTrak™ Five-SeveN | Hyper Beast (Minimal Wear),564,77
-2023-03-10 15:30:19.968083,StatTrak™ M4A1-S | Printstream (Minimal Wear),2153.97,293
-2023-03-10 15:30:20.703178,StatTrak™ Desert Eagle | Printstream (Minimal Wear),739.98,101
+2023-03-09 19:06:07.198561,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),562,76
+2023-03-09 19:06:07.983729,StatTrak M4A1-S | Printstream (Minimal Wear),2150,292
+2023-03-09 19:06:08.770882,StatTrak Desert Eagle | Printstream (Minimal Wear),759,103
+2023-03-09 19:06:09.489610,M4A4 | Temukau (Factory New),3888,529
+2023-03-09 19:06:10.289139,StatTrak M4A4 | Temukau (Minimal Wear),2566.66,349
+2023-03-09 19:06:29.395080,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),562,76
+2023-03-09 19:06:30.070656,StatTrak M4A1-S | Printstream (Minimal Wear),2150,292
+2023-03-09 19:06:30.736761,StatTrak Desert Eagle | Printstream (Minimal Wear),759,103
+2023-03-09 19:06:31.410330,M4A4 | Temukau (Factory New),3888,529
+2023-03-09 19:06:32.079931,StatTrak M4A4 | Temukau (Minimal Wear),2566.66,349
+2023-03-09 19:10:12.293744,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),562,76
+2023-03-09 19:10:13.057089,StatTrak M4A1-S | Printstream (Minimal Wear),2150,292
+2023-03-09 19:10:13.821922,StatTrak Desert Eagle | Printstream (Minimal Wear),759,103
+2023-03-09 19:10:14.502930,M4A4 | Temukau (Factory New),3888,529
+2023-03-09 19:10:15.261811,StatTrak M4A4 | Temukau (Minimal Wear),2566.66,349
+2023-03-09 19:10:25.958062,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),562,76
+2023-03-09 19:10:26.656431,StatTrak M4A1-S | Printstream (Minimal Wear),2150,292
+2023-03-09 19:10:27.335953,StatTrak Desert Eagle | Printstream (Minimal Wear),759,103
+2023-03-09 19:10:28.005553,M4A4 | Temukau (Factory New),3888,529
+2023-03-09 19:10:28.675649,StatTrak M4A4 | Temukau (Minimal Wear),2566.66,349
+2023-03-09 19:10:39.344621,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),562,76
+2023-03-09 19:10:40.070270,StatTrak M4A1-S | Printstream (Minimal Wear),2150,292
+2023-03-09 19:10:40.740863,StatTrak Desert Eagle | Printstream (Minimal Wear),759,103
+2023-03-09 19:10:41.401040,M4A4 | Temukau (Factory New),3888,529
+2023-03-10 15:30:19.259223,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),564,77
+2023-03-10 15:30:19.968083,StatTrak M4A1-S | Printstream (Minimal Wear),2153.97,293
+2023-03-10 15:30:20.703178,StatTrak Desert Eagle | Printstream (Minimal Wear),739.98,101
 2023-03-10 15:30:21.434484,M4A4 | Temukau (Factory New),3500,476
-2023-03-10 15:30:22.248429,StatTrak™ M4A4 | Temukau (Minimal Wear),2588.88,352
-timestamp,weapon,preis,preis_eur
-2023-03-10 15:31:51.402987,StatTrak™ Five-SeveN | Hyper Beast (Minimal Wear),564,77
-2023-03-10 15:31:52.074703,StatTrak™ M4A1-S | Printstream (Minimal Wear),2153.97,293
-2023-03-10 15:31:52.720435,StatTrak™ Desert Eagle | Printstream (Minimal Wear),739.98,101
+2023-03-10 15:30:22.248429,StatTrak M4A4 | Temukau (Minimal Wear),2588.88,352
+2023-03-10 15:31:51.402987,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),564,77
+2023-03-10 15:31:52.074703,StatTrak M4A1-S | Printstream (Minimal Wear),2153.97,293
+2023-03-10 15:31:52.720435,StatTrak Desert Eagle | Printstream (Minimal Wear),739.98,101
 2023-03-10 15:31:53.397402,M4A4 | Temukau (Factory New),3500,476
-2023-03-10 15:31:54.080648,StatTrak™ M4A4 | Temukau (Minimal Wear),2588.88,352
-timestamp,weapon,preis,preis_eur
-2023-03-10 16:01:44.951036,StatTrak™ Five-SeveN | Hyper Beast (Minimal Wear),564,77
-2023-03-10 16:01:45.748403,StatTrak™ M4A1-S | Printstream (Minimal Wear),2153.97,293
-2023-03-10 16:01:46.421746,StatTrak™ Desert Eagle | Printstream (Minimal Wear),735,100
+2023-03-10 15:31:54.080648,StatTrak M4A4 | Temukau (Minimal Wear),2588.88,352
+2023-03-10 16:01:44.951036,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),564,77
+2023-03-10 16:01:45.748403,StatTrak M4A1-S | Printstream (Minimal Wear),2153.97,293
+2023-03-10 16:01:46.421746,StatTrak Desert Eagle | Printstream (Minimal Wear),735,100
 2023-03-10 16:01:47.115961,M4A4 | Temukau (Factory New),3540,482
-2023-03-10 16:01:47.819323,StatTrak™ M4A4 | Temukau (Minimal Wear),2588.88,352
-timestamp,weapon,preis,preis_eur
-2023-03-10 16:03:36.099551,StatTrak™ Five-SeveN | Hyper Beast (Minimal Wear),564,77
-2023-03-10 16:03:36.763316,StatTrak™ M4A1-S | Printstream (Minimal Wear),2153.97,293
-2023-03-10 16:03:37.417060,StatTrak™ Desert Eagle | Printstream (Minimal Wear),734.5,100
+2023-03-10 16:01:47.819323,StatTrak M4A4 | Temukau (Minimal Wear),2588.88,352
+2023-03-10 16:03:36.099551,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),564,77
+2023-03-10 16:03:36.763316,StatTrak M4A1-S | Printstream (Minimal Wear),2153.97,293
+2023-03-10 16:03:37.417060,StatTrak Desert Eagle | Printstream (Minimal Wear),734.5,100
 2023-03-10 16:03:38.118169,M4A4 | Temukau (Factory New),3540,482
-2023-03-10 16:03:38.999274,StatTrak™ M4A4 | Temukau (Minimal Wear),2588.88,352
-timestamp,weapon,preis,preis_eur
-2023-03-10 17:00:01.806126,StatTrak™ Five-SeveN | Hyper Beast (Minimal Wear),564,77
-2023-03-10 17:00:02.606484,StatTrak™ M4A1-S | Printstream (Minimal Wear),2153.97,293
-2023-03-10 17:00:03.385291,StatTrak™ Desert Eagle | Printstream (Minimal Wear),734.5,100
+2023-03-10 16:03:38.999274,StatTrak M4A4 | Temukau (Minimal Wear),2588.88,352
+2023-03-10 17:00:01.806126,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),564,77
+2023-03-10 17:00:02.606484,StatTrak M4A1-S | Printstream (Minimal Wear),2153.97,293
+2023-03-10 17:00:03.385291,StatTrak Desert Eagle | Printstream (Minimal Wear),734.5,100
 2023-03-10 17:00:04.464152,M4A4 | Temukau (Factory New),3532,480
-2023-03-10 17:00:05.235731,StatTrak™ M4A4 | Temukau (Minimal Wear),2588.38,352
-timestamp,weapon,preis,preis_eur
-2023-03-10 18:00:01.849804,StatTrak™ Five-SeveN | Hyper Beast (Minimal Wear),564,77
-2023-03-10 18:00:02.611829,StatTrak™ M4A1-S | Printstream (Minimal Wear),2153.97,293
-2023-03-10 18:00:03.369844,StatTrak™ Desert Eagle | Printstream (Minimal Wear),735,100
+2023-03-10 17:00:05.235731,StatTrak M4A4 | Temukau (Minimal Wear),2588.38,352
+2023-03-10 18:00:01.849804,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),564,77
+2023-03-10 18:00:02.611829,StatTrak M4A1-S | Printstream (Minimal Wear),2153.97,293
+2023-03-10 18:00:03.369844,StatTrak Desert Eagle | Printstream (Minimal Wear),735,100
 2023-03-10 18:00:04.133875,M4A4 | Temukau (Factory New),3520,478
-2023-03-10 18:00:04.960071,StatTrak™ M4A4 | Temukau (Minimal Wear),2588.38,352
-timestamp,weapon,preis,preis_eur
-2023-03-10 19:00:02.166967,StatTrak™ Five-SeveN | Hyper Beast (Minimal Wear),564,77
-2023-03-10 19:00:03.111754,StatTrak™ M4A1-S | Printstream (Minimal Wear),2153.97,293
-2023-03-10 19:00:03.958972,StatTrak™ Desert Eagle | Printstream (Minimal Wear),735,100
+2023-03-10 18:00:04.960071,StatTrak M4A4 | Temukau (Minimal Wear),2588.38,352
+2023-03-10 19:00:02.166967,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),564,77
+2023-03-10 19:00:03.111754,StatTrak M4A1-S | Printstream (Minimal Wear),2153.97,293
+2023-03-10 19:00:03.958972,StatTrak Desert Eagle | Printstream (Minimal Wear),735,100
 2023-03-10 19:00:04.695933,M4A4 | Temukau (Factory New),3500,476
-2023-03-10 19:00:05.463170,StatTrak™ M4A4 | Temukau (Minimal Wear),2588.38,352
-timestamp,weapon,preis,preis_eur
-timestamp,weapon,preis,preis_eur
-2023-03-10 19:50:48.538470,StatTrak™ Five-SeveN | Hyper Beast (Minimal Wear),564,77
-2023-03-10 19:50:49.334551,StatTrak™ M4A1-S | Printstream (Minimal Wear),2153.97,293
-2023-03-10 19:50:50.142737,StatTrak™ Desert Eagle | Printstream (Minimal Wear),735,100
+2023-03-10 19:00:05.463170,StatTrak M4A4 | Temukau (Minimal Wear),2588.38,352
+2023-03-10 19:50:48.538470,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),564,77
+2023-03-10 19:50:49.334551,StatTrak M4A1-S | Printstream (Minimal Wear),2153.97,293
+2023-03-10 19:50:50.142737,StatTrak Desert Eagle | Printstream (Minimal Wear),735,100
 2023-03-10 19:50:50.972911,M4A4 | Temukau (Factory New),3448,469
-2023-03-10 19:50:51.740842,StatTrak™ M4A4 | Temukau (Minimal Wear),2588.88,352
-timestamp,weapon,preis,preis_eur
-2023-03-10 19:54:54.462806,StatTrak™ Five-SeveN | Hyper Beast (Minimal Wear),564,77
-2023-03-10 19:54:55.331209,StatTrak™ M4A1-S | Printstream (Minimal Wear),2153.97,293
-2023-03-10 19:54:56.158837,StatTrak™ Desert Eagle | Printstream (Minimal Wear),735,100
+2023-03-10 19:50:51.740842,StatTrak M4A4 | Temukau (Minimal Wear),2588.88,352
+2023-03-10 19:54:54.462806,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),564,77
+2023-03-10 19:54:55.331209,StatTrak M4A1-S | Printstream (Minimal Wear),2153.97,293
+2023-03-10 19:54:56.158837,StatTrak Desert Eagle | Printstream (Minimal Wear),735,100
 2023-03-10 19:54:56.925078,M4A4 | Temukau (Factory New),3448,469
-2023-03-10 19:54:57.704963,StatTrak™ M4A4 | Temukau (Minimal Wear),2588.88,352
-timestamp,weapon,preis,preis_eur
-timestamp,weapon,preis,preis_eur
-timestamp,weapon,preis,preis_eur
+2023-03-10 19:54:57.704963,StatTrak M4A4 | Temukau (Minimal Wear),2588.88,352
+2023-03-10 22:30:15.795742,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),564,77
+2023-03-10 22:30:16.569807,StatTrak M4A1-S | Printstream (Minimal Wear),2153.47,293
+2023-03-10 22:30:17.339885,StatTrak Desert Eagle | Printstream (Minimal Wear),740,101
+2023-03-10 22:30:18.112903,M4A4 | Temukau (Factory New),3448,469
+2023-03-10 22:30:18.875968,StatTrak M4A4 | Temukau (Minimal Wear),2588.87,352
+2023-03-11 01:31:26.570878,StatTrak Five-SeveN | Hyper Beast (Minimal Wear),564,77
+2023-03-11 01:31:27.240631,StatTrak M4A1-S | Printstream (Minimal Wear),2153.97,293
+2023-03-11 01:31:27.897377,StatTrak Desert Eagle | Printstream (Minimal Wear),741,101
+2023-03-11 01:31:28.650375,M4A4 | Temukau (Factory New),3429.5,466
+2023-03-11 01:31:29.412708,StatTrak M4A4 | Temukau (Minimal Wear),2588.37,352

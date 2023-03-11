@@ -1,22 +1,23 @@
 from pydoc import cli
-import csv, time, os
+import csv, time, os, re
 from datetime import datetime
-import requests, pymongo
+import requests, json, schedule, time
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="Maurits",
+  password="test",
+  database="csgohistory",
+  auth_plugin='mysql_native_password'
+)
+
+mycursor = mydb.cursor()
 
 
 messer = requests.get('https://buff.163.com/api/market/goods/buying?game=csgo&page_num=1&category_group=knife').json()
-
 #https://buff.163.com/api/market/goods/sell_order?game=csgo&goods_id=835861&page_num=1&_=1657808768032
 eurtoyuan = requests.get('https://api.frankfurter.app/latest?amount=1&from=CNY&to=EUR').json()
-
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-
-mydb = myclient["csgo"]
-mycol = mydb["csgohistory"]
-
-collist = mydb.list_collection_names()
-if "customers" in collist:
-  print("The collection exists.")
 
 ids = ['835861','781677','38568']
 
@@ -49,7 +50,7 @@ temstat = {
 vals = [fvs, m4, de, temfn, temstat]
 header = ["timestamp", "weapon", "preis", "preis_eur"]
 yuan = float(eurtoyuan['rates']['EUR'])
-now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
 
 def preisabfrage(val):
         s = "https://buff.163.com/api/market/goods/sell_order?game=csgo&goods_id=" + str(val["id"])
@@ -59,11 +60,20 @@ def preisabfrage(val):
         lowesteur = round(float(lowest) * yuan)
         return name, lowest, lowesteur
  
-with open('C:/Users/Maurits/Desktop/GIT Project/csgohist/skinverlauf.csv', 'a', newline='') as f:       
-    writer = csv.writer(f)
-    #writer.writerow(header)
-    for val in vals:
-        line = preisabfrage(val)
-        writer.writerow([datetime.now(), str(line[0]), str(line[1]), str(line[2])])
-        mydict = {"timestamp" : now, "weapon" : str(line[0]), "preis": str(line[1]), "preis_eur":str(line[2]) }
-        x = mycol.insert_one(mydict)
+
+    
+for val in vals:
+    line = preisabfrage(val)
+    skin = re.findall("\| (.*) \(", line[0])[0]
+    print(skin)
+    condition = re.findall("\((.*)\)",line[0])[0]
+    print(condition)
+    waffe = re.findall("(.*) \|", line[0])[0]
+    stat = False
+    if "StatTrak" in waffe:
+          waffe = waffe.split(' ', 1)[1]
+          stat = True
+    print("statTrak: ", stat)
+    print(waffe)
+    
+
