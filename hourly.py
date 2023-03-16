@@ -1,5 +1,5 @@
 from pydoc import cli
-import csv, time, os
+import csv, time, os, re
 from datetime import datetime
 import requests, pymongo
 
@@ -46,7 +46,12 @@ temstat = {
     "wish" : "2300"
 }
 
-vals = [fvs, m4, de, temfn, temstat]
+wpcs1 = {
+     "id" : "34273",
+     "wish" : "430"
+}
+
+vals = [fvs, m4, de, temfn, temstat, wpcs1]
 header = ["timestamp", "weapon", "preis", "preis_eur"]
 yuan = float(eurtoyuan['rates']['EUR'])
 now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -64,6 +69,7 @@ with open('C:/Users/Maurits/Desktop/GIT Project/csgohist/skinverlauf.csv', 'a', 
     #writer.writerow(header)
     for val in vals:
         line = preisabfrage(val)
-        writer.writerow([datetime.now(), str(line[0]), str(line[1]), str(line[2])])
-        mydict = {"timestamp" : now, "weapon" : str(line[0]), "preis": str(line[1]), "preis_eur":str(line[2]) }
+        processed_string = re.sub(r'\u2122', '', line[0])
+        writer.writerow([datetime.now(), processed_string, str(line[1]), str(line[2])])
+        mydict = {"timestamp" : now, "weapon" : processed_string, "preis": str(line[1]), "preis_eur":str(line[2]) }
         x = mycol.insert_one(mydict)
