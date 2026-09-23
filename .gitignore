@@ -132,3 +132,5 @@ dmypy.json
 # Buff Login-Cookie
 buff_session.txt
 buff_cookies.txt
+graph.png
+skinverlauf.csv
