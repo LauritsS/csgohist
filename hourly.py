@@ -41,9 +41,14 @@ temfn = {
     "wish" : "3500"
 }
 
-temstat = {
+temstatmw = {
     "id" : "921604",
     "wish" : "2300"
+}
+
+temstatfn = {
+     "id" : "921460",
+     "wish" : "4500"
 }
 
 wpcs1 = {
@@ -51,7 +56,17 @@ wpcs1 = {
      "wish" : "430"
 }
 
-vals = [fvs, m4, de, temfn, temstat, wpcs1]
+bp = {
+     "id" : "835547",
+     "wish" : "4300"
+}
+
+onibs = {
+     "id" : "34107",
+     "wish" : "1450"
+}
+
+vals = [fvs, m4, de, temfn, temstatmw,temstatfn, wpcs1, bp, onibs]
 header = ["timestamp", "weapon", "preis", "preis_eur"]
 yuan = float(eurtoyuan['rates']['EUR'])
 now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')

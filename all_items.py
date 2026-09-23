@@ -60,7 +60,7 @@ def namenabfrage(id):
         
 
 with open('C:/Users/Maurits/Desktop/GIT Project/csgohist/ids.csv', 'a', newline='', encoding='utf-8') as f:   
-    for id in range(195945,1000000): #33686 macht Probleme, da keine Angebote
+    for id in range(990577,1000000): #ConnectionError
         writer = csv.writer(f)
         link = search_item(id)
         print(id, ": Wird überprüft")
