@@ -1,53 +1,88 @@
+import os
 import pandas as pd
-import seaborn as sns
 from matplotlib import pyplot as plt
 import matplotlib.dates as mdates
-import numpy as np
+
+ORDNER = os.path.dirname(os.path.abspath(__file__))
+TOP_SPRUENGE = 3                    # markierte Sprünge pro Skin
+MIN_ABSTAND = pd.Timedelta('30D')   # Sprünge pro Skin mindestens so weit auseinander
+LUECKE = pd.Timedelta('2D')         # ab dieser Pause wird die Linie unterbrochen
 
 # Daten laden
-df = pd.read_csv('C:/Users/Maurits/Desktop/GIT Project/csgohist/skinverlauf.csv', encoding= 'unicode_escape')
-df['timestamp'] = pd.to_datetime(df['timestamp']).dt.strftime('%Y-%m-%d %H:%M:%S')
+df = pd.read_csv(os.path.join(ORDNER, 'skinverlauf.csv'), encoding='unicode_escape')
+df['timestamp'] = pd.to_datetime(df['timestamp'])
+df = df.sort_values('timestamp')
 
-# Finden des letzten Wertes für jede Waffe
-last_vals = df.groupby('weapon').tail(1)
 
-# Berechnen der Sprünge
-df['prev_val'] = df.groupby('weapon')['preis_eur'].shift(1)
-df['jump'] = (df['preis_eur'] - df['prev_val']).abs()
-df['threshold'] = df['preis_eur'] * 0.04  # 3.5% Schwankung
+def groesste_spruenge(g):
+    # Gleitender Median über 5 Messungen (~1 Std.) filtert einzelne Ausreißer-Angebote,
+    # damit nur Preisänderungen zählen, die auch bestehen bleiben
+    glatt = g['preis_eur'].rolling(5, center=True, min_periods=1).median()
+    vorher = glatt.shift(1)
+    spruenge = pd.DataFrame({
+        'timestamp': g['timestamp'],
+        'vorher': vorher,
+        'nachher': glatt,
+        'diff': glatt - vorher,
+        'prozent': (glatt - vorher) / vorher * 100,
+    })
+    # Änderungen über eine Datenlücke hinweg sind keine Sprünge
+    spruenge = spruenge[g['timestamp'].diff() < LUECKE].dropna()
+    spruenge = spruenge.reindex(spruenge['prozent'].abs().sort_values(ascending=False).index)
 
-# Markieren der Sprünge, die größer als der Schwellenwert sind
-df['jump_highlight'] = df['jump'] > df['threshold']
+    auswahl = []
+    for _, s in spruenge.iterrows():
+        if all(abs(s['timestamp'] - a['timestamp']) > MIN_ABSTAND for a in auswahl):
+            auswahl.append(s)
+        if len(auswahl) == TOP_SPRUENGE:
+            break
+    return auswahl
 
-# Plot erstellen
-sns.set_style("darkgrid")
-fig, ax = plt.subplots(figsize=(12, 8))
-sns.lineplot(x="timestamp", y="preis_eur", hue='weapon', data=df, ax=ax, palette="bright", linewidth=2.5, alpha=0.8)
 
-# Annotationen hinzufügen
-for i, row in last_vals.iterrows():
-    ax.annotate(row['preis_eur'], xy=(row['timestamp'], row['preis_eur']), xytext=(10, 10), textcoords='offset points', fontsize=10, color='black')
+waffen = sorted(df['weapon'].unique())
+spalten = 3
+zeilen = -(-len(waffen) // spalten)
+fig, axes = plt.subplots(zeilen, spalten, figsize=(20, 4.2 * zeilen), sharex=True)
+axes = axes.flatten()
+start, ende = df['timestamp'].min(), df['timestamp'].max()
 
-# Markieren der Sprünge im Plot
-for i, row in df[df['jump_highlight']].iterrows():
-    ax.annotate(round(row['jump'], 2), xy=(row['timestamp'], row['preis_eur']), xytext=(10, -20), textcoords='offset points', fontsize=10, color='black', arrowprops=dict(arrowstyle='-|>', lw=1, color='black', alpha=0.8))
+print(f"{'Skin':50} {'Datum':16} {'vorher':>7} {'nachher':>7} {'Änderung':>14}")
+for ax, waffe in zip(axes, waffen):
+    g = df[df['weapon'] == waffe].reset_index(drop=True)
 
-# X-Achsenbeschriftungen anpassen
-ticks = df[df['jump_highlight']]['timestamp'].tolist()
-ax.set_xticks(ticks)
-ax.set_xticklabels(ticks, rotation=45, ha='right')
+    # Linie bei Datenlücken unterbrechen statt gerade durchzuziehen
+    x = g['timestamp'].copy()
+    y = g['preis_eur'].astype(float).copy()
+    luecken = x.diff() > LUECKE
+    x_plot = pd.concat([x, x[luecken] - pd.Timedelta(seconds=1)]).sort_values()
+    y_plot = y.reindex(x_plot.index)
+    y_plot[x_plot.index.duplicated(keep='last')] = float('nan')
+    ax.plot(x_plot.values, y_plot.values, color='#1f77b4', linewidth=0.6)
 
-# Achsenbeschriftungen und Titel
-plt.xlabel("Datum")
-plt.ylabel("Preis in Euro")
-plt.title("Preisverlauf von CS:GO Waffenskins")
+    for s in groesste_spruenge(g):
+        farbe = '#2ca02c' if s['diff'] > 0 else '#d62728'
+        ax.axvline(s['timestamp'], color=farbe, linewidth=0.8, alpha=0.5, linestyle='--')
+        ax.plot(s['timestamp'], s['nachher'], 'o', color=farbe, markersize=5)
+        ax.annotate(f"{s['diff']:+.0f} € ({s['prozent']:+.0f}%)\n{s['timestamp']:%d.%m.%y}",
+                    xy=(s['timestamp'], s['nachher']), xytext=(6, 0), textcoords='offset points',
+                    fontsize=8, color=farbe, fontweight='bold', va='center',
+                    bbox=dict(boxstyle='round,pad=0.2', fc='white', ec=farbe, alpha=0.85))
+        print(f"{waffe[:50]:50} {s['timestamp']:%d.%m.%Y %H:%M} {s['vorher']:7.0f} {s['nachher']:7.0f} {s['diff']:+6.0f} € {s['prozent']:+5.0f}%")
 
-# Legende aus dem Plot ziehen und separat platzieren
-legend = ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0., prop={'size': 8})
-legend.set_title("Legende")
+    letzter = g.iloc[-1]
+    ax.set_title(f"{waffe}\naktuell {letzter['preis_eur']} € ({letzter['timestamp']:%d.%m.%Y})", fontsize=10)
+    ax.set_ylabel("Preis in Euro")
+    ax.grid(True, alpha=0.3)
+    ax.set_xlim(start, ende)
+    ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=[1, 4, 7, 10]))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%y'))
+    ax.tick_params(axis='x', labelbottom=True, labelrotation=45, labelsize=8)
 
-# Layout optimieren
+for ax in axes[len(waffen):]:
+    ax.set_visible(False)
+
+fig.suptitle(f"Preisverlauf CS:GO Skins ({start:%d.%m.%Y} – {ende:%d.%m.%Y}), "
+             f"markiert: die {TOP_SPRUENGE} größten Sprünge pro Skin", fontsize=14)
 plt.tight_layout()
-
-# Plot anzeigen
+plt.savefig(os.path.join(ORDNER, 'graph.png'), dpi=150)
 plt.show()
